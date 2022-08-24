@@ -15,6 +15,22 @@ const btnHold = document.querySelector('.btn--hold');
 const currentScoreP1El = document.querySelector('#current--0');
 const currentScoreP2El = document.querySelector('#current--1');
 
+//prompt for collection of information
+function startGame(){
+let user1 = prompt("Please enter the first player team:");
+let user2 = prompt("Please enter the second player team:");
+
+
+const player1Name = document.querySelector('#name--0');
+const player2Name = document.querySelector('#name--1');
+
+player1Name.innerHTML =  user1;
+player2Name.innerHTML =  user2;
+}
+
+let highScore = Number(prompt("Enter Game Limit"));
+
+
 //Starting conditions
 player1Score.textContent = 0;
 player2Score.textContent = 0;
@@ -23,6 +39,9 @@ diceEl.classList.add('hidden');
 let score, currentScore, activePlayer, playingState;
 
 const init = function () {
+
+  startGame();
+
   score = [0, 0];
   currentScore = 0;
   activePlayer = 0;
@@ -81,7 +100,7 @@ btnHold.addEventListener('click', function () {
       score[activePlayer];
 
     //check if player score is >= 100
-    if (score[activePlayer] >= 5) {
+    if (score[activePlayer] >= highScore) {
       //Finish the game
       playingState = false;
       document
